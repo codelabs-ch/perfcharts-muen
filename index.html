@@ -1,0 +1,31 @@
+<html>
+	<head>
+		<script src="https://www.google.com/jsapi"></script>
+		<script src="http://code.jquery.com/jquery-1.8.2.js"></script>
+		<script src="http://jquery-csv.googlecode.com/git/src/jquery.csv.js"></script>
+		<script>
+			var csv;
+			$.get('data',function(data){
+				csv = $.csv.toArrays(data, {
+					onParseValue: $.csv.hooks.castToScalar
+				});
+			},dataType='text');
+
+			google.load("visualization", "1", {packages:["corechart"]});
+			google.setOnLoadCallback(drawChart);
+			function drawChart() {
+				var data = google.visualization.arrayToDataTable(csv);
+				var options = {
+					title: 'Muen inter-VM pingpong cycles',
+					legend: { position: 'bottom' }
+				};
+
+				var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+				chart.draw(data, options);
+			}
+		</script>
+	</head>
+	<body>
+		<div id="chart_div" style="width: textwidth; height: 500px;"></div>
+	</body>
+</html>
