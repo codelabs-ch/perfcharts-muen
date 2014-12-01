@@ -17,7 +17,9 @@
 				var data = google.visualization.arrayToDataTable(csv);
 				var options = {
 					title: 'Muen inter-VM pingpong cycles',
-					legend: { position: 'bottom' }
+					legend: { position: 'top' },
+					hAxis: { title: 'Build' },
+					vAxis: { title: 'Cycles' }
 				};
 
 				var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
