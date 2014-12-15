@@ -31,7 +31,7 @@
 			loadCSV('data-cycles', function(csv){
 				google.setOnLoadCallback(function() {
 					drawChart(csv, 'Muen inter-VM pingpong cycles', 'Build',
-					          'Cycles', 'chart_div');
+					          'Cycles', 'chart_cycles');
 				});
 			});
 
@@ -39,6 +39,6 @@
 		</script>
 	</head>
 	<body>
-		<div id="chart_div" style="width: textwidth; height: 500px;"></div>
+		<div id="chart_cycles" style="width: textwidth; height: 500px;"></div>
 	</body>
 </html>
