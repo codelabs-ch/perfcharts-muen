@@ -4,27 +4,38 @@
 		<script src="https://code.jquery.com/jquery-1.8.2.js"></script>
 		<script src="https://jquery-csv.googlecode.com/git/src/jquery.csv.js"></script>
 		<script>
-			var csv;
-			$.get('data',function(data){
-				csv = $.csv.toArrays(data, {
-					onParseValue: $.csv.hooks.castToScalar
-				});
-			},dataType='text');
+			"use strict";
 
-			google.load("visualization", "1", {packages:["corechart"]});
-			google.setOnLoadCallback(drawChart);
-			function drawChart() {
-				var data = google.visualization.arrayToDataTable(csv);
+			function loadCSV(file, callback) {
+				$.get(file, null, function(data){
+					var csv = $.csv.toArrays(data, {
+						onParseValue: $.csv.hooks.castToScalar
+					});
+					callback(csv);
+				}, 'text');
+			}
+
+			function drawChart(dataArray, title, hAxis, vAxis, div) {
+				var data = google.visualization.arrayToDataTable(dataArray);
 				var options = {
-					title: 'Muen inter-VM pingpong cycles',
+					title: title,
 					legend: { position: 'top' },
-					hAxis: { title: 'Build' },
-					vAxis: { title: 'Cycles' }
+					hAxis: { title: hAxis },
+					vAxis: { title: vAxis }
 				};
 
-				var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+				var chart = new google.visualization.LineChart(document.getElementById(div));
 				chart.draw(data, options);
 			}
+
+			loadCSV('data', function(csv){
+				google.setOnLoadCallback(function() {
+					drawChart(csv, 'Muen inter-VM pingpong cycles', 'Build',
+					          'Cycles', 'chart_div');
+				});
+			});
+
+			google.load("visualization", "1", {packages:["corechart"]});
 		</script>
 	</head>
 	<body>
