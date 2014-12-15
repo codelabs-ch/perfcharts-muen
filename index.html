@@ -28,7 +28,7 @@
 				chart.draw(data, options);
 			}
 
-			loadCSV('data', function(csv){
+			loadCSV('data-cycles', function(csv){
 				google.setOnLoadCallback(function() {
 					drawChart(csv, 'Muen inter-VM pingpong cycles', 'Build',
 					          'Cycles', 'chart_div');
