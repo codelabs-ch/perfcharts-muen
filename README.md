@@ -1,4 +1,4 @@
-pingpong-cycles
+perfcharts-muen
 ===============
 
-Muen inter-VM pingpong cycles chart in debug mode
+Muen performance charts (debug build)
