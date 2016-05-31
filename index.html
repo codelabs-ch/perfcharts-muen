@@ -1,13 +1,25 @@
 <html>
 	<head>
-		<script src="https://www.google.com/jsapi"></script>
+		<script src="https://www.gstatic.com/charts/loader.js"></script>
 		<script src="https://code.jquery.com/jquery-1.8.2.js"></script>
 		<script src="https://raw.githubusercontent.com/evanplaice/jquery-csv/master/src/jquery.csv.min.js"></script>
 		<script>
 			"use strict";
 
+			google.charts.load('current', {packages: ['corechart']});
+			loadCSV('data-cycles', function(csv) {
+				google.charts.setOnLoadCallback(function() {
+					drawChart(csv, 'Muen inter-VM pingpong cycles', 'Build', 'Cycles', 'chart_cycles');
+				});
+			});
+			loadCSV('data-sysbench', function(csv) {
+				google.charts.setOnLoadCallback(function() {
+					drawChart(csv, 'Muen sysbench CPU benchmark (--cpu-max-prime=10000)', 'Build', 'Seconds', 'chart_sysbench');
+				});
+			});
+
 			function loadCSV(file, callback) {
-				$.get(file, null, function(data){
+				$.get(file, null, function(data) {
 					var csv = $.csv.toArrays(data, {
 						onParseValue: $.csv.hooks.castToScalar
 					});
@@ -27,21 +39,6 @@
 				var chart = new google.visualization.LineChart(document.getElementById(div));
 				chart.draw(data, options);
 			}
-
-			loadCSV('data-cycles', function(csv){
-				google.setOnLoadCallback(function() {
-					drawChart(csv, 'Muen inter-VM pingpong cycles', 'Build',
-					          'Cycles', 'chart_cycles');
-				});
-			});
-			loadCSV('data-sysbench', function(csv){
-				google.setOnLoadCallback(function() {
-					drawChart(csv, 'Muen sysbench CPU benchmark (--cpu-max-prime=10000)', 'Build',
-					          'Seconds', 'chart_sysbench');
-				});
-			});
-
-			google.load("visualization", "1", {packages:["corechart"]});
 		</script>
 	</head>
 	<body>
