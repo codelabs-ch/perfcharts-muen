@@ -7,13 +7,11 @@
 			"use strict";
 
 			google.charts.load('current', {packages: ['corechart']});
-			loadCSV('data-cycles', function(csv) {
-				google.charts.setOnLoadCallback(function() {
+			google.charts.setOnLoadCallback(function() {
+				loadCSV('data-cycles', function(csv) {
 					drawChart(csv, 'Muen inter-VM pingpong cycles', 'Build', 'Cycles', 'chart_cycles');
 				});
-			});
-			loadCSV('data-sysbench', function(csv) {
-				google.charts.setOnLoadCallback(function() {
+				loadCSV('data-sysbench', function(csv) {
 					drawChart(csv, 'Muen sysbench CPU benchmark (--cpu-max-prime=10000)', 'Build', 'Seconds', 'chart_sysbench');
 				});
 			});
