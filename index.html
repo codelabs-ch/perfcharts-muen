@@ -7,14 +7,19 @@
 			"use strict";
 
 			google.charts.load('current', {packages: ['corechart']});
-			loadCSV('data-cycles', function(csv) {
+			loadCSV('data-iperf-vm', function(csv) {
 				google.charts.setOnLoadCallback(function() {
-					drawChart(csv, 'Muen inter-VM pingpong cycles', 'Build', 'Cycles', 'chart_cycles');
+					drawChart(csv, 'Muen inter-VM iperf over muennet (Mbits)', 'Build', 'Seconds', 'chart_iperf_vm');
 				});
 			});
 			loadCSV('data-sysbench', function(csv) {
 				google.charts.setOnLoadCallback(function() {
 					drawChart(csv, 'Muen sysbench CPU benchmark (--cpu-max-prime=10000)', 'Build', 'Seconds', 'chart_sysbench');
+				});
+			});
+			loadCSV('data-cycles', function(csv) {
+				google.charts.setOnLoadCallback(function() {
+					drawChart(csv, 'Muen inter-VM pingpong cycles', 'Build', 'Cycles', 'chart_cycles');
 				});
 			});
 
@@ -42,7 +47,8 @@
 		</script>
 	</head>
 	<body>
-		<div id="chart_cycles" style="width: textwidth; height: 50%;"></div>
-		<div id="chart_sysbench" style="width: textwidth; height: 50%;"></div>
+		<div id="chart_iperf_vm" style="width: textwidth; height: 33%;"></div>
+		<div id="chart_sysbench" style="width: textwidth; height: 33%;"></div>
+		<div id="chart_cycles" style="width: textwidth; height: 33%;"></div>
 	</body>
 </html>
