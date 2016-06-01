@@ -9,7 +9,7 @@
 			google.charts.load('current', {packages: ['corechart']});
 			loadCSV('data-iperf-vm', function(csv) {
 				google.charts.setOnLoadCallback(function() {
-					drawChart(csv, 'Muen inter-VM iperf over muennet (Mbits)', 'Build', 'Seconds', 'chart_iperf_vm');
+					drawChart(csv, 'Muen inter-VM iperf over muennet', 'Build', 'Mbits', 'chart_iperf_vm');
 				});
 			});
 			loadCSV('data-sysbench', function(csv) {
