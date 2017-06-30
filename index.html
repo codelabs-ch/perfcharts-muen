@@ -4,7 +4,7 @@
 		<style>
 			div.table {
 				width: 100%;
-				height: 100%;
+				height: 99%;
 				display: table;
 				border-collapse: collapse;
 			}
@@ -32,6 +32,11 @@
 			loadCSV('data-metrics-complexity', function(csv) {
 				google.charts.setOnLoadCallback(function() {
 					drawChart(csv, 'Muen kernel complexity metrics', 'Build', 'Metrics', 'chart_metrics_comp');
+				});
+			});
+			loadCSV('data-metrics-vcs', function(csv) {
+				google.charts.setOnLoadCallback(function() {
+					drawChart(csv, 'Muen kernel verification conditions (VCs)', 'Build', 'Count', 'chart_metrics_vcs');
 				});
 			});
 			loadCSV('data-iperf-vm', function(csv) {
@@ -81,15 +86,16 @@
 				<div class="td" id="chart_metrics_comp"></div>
 			</div>
 			<div class="tr">
-				<div class="td" id="chart_iperf_vm"></div>
+				<div class="td" id="chart_metrics_vcs"></div>
 				<div class="td" id="chart_sysbench"></div>
 			</div>
 			<div class="tr">
+				<div class="td" id="chart_iperf_vm"></div>
 				<div class="td" id="chart_cycles"/></div>
-				<div class="td" id="archive" style="font-size: xx-small;">
-					Previous charts: <a href="archive/20170630/index.html">Archive</a>
-				</div>
 			</div>
+		</div>
+		<div id="archive" style="font-size: xx-small;">
+			Previous charts: <a href="archive/20170630/index.html">Archive</a>
 		</div>
 	</body>
 </html>
