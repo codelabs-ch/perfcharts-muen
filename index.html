@@ -46,7 +46,7 @@
 			});
 			loadCSV('data-sysbench', function(csv) {
 				google.charts.setOnLoadCallback(function() {
-					drawChart(csv, 'Muen sysbench CPU benchmark (--cpu-max-prime=10000)', 'Build', 'Seconds', 'chart_sysbench');
+					drawChart(csv, 'Muen CPU benchmark (sysbench cpu run)', 'Build', 'Events per sec', 'chart_sysbench');
 				});
 			});
 			loadCSV('data-cycles', function(csv) {
